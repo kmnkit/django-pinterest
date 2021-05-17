@@ -1,4 +1,5 @@
 import os
+from django.urls.base import reverse_lazy
 import environ
 from pathlib import Path
 
@@ -28,7 +29,9 @@ DJANGO_APPS = [
 
 PROJECT_APPS = ["accountapp"]
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+THIRD_PARTY_APPS = ["bootstrap4"]
+
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -117,3 +120,6 @@ STATICFILES_DIRS = [
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = reverse_lazy("accountapp:hello_world")
+LOGOUT_REDIRECT_URL = reverse_lazy("accountapp:login")
