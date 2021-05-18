@@ -4,24 +4,26 @@
                 Pragmatic
         </h1>
     </div>
-    <div>
-        <a href="{% url 'articleapp:list' %}">
+    <div class="pragmatic--header_navbar">
+        <a href="{% url 'articleapp:list' %}" class="pragmatic--header_nav">
             <span>Articles</span>
         </a>
-        <span>nav 2</span>
+        <a href="{% url 'projectapp:list' %}" class="pragmatic--header_nav">
+            <span>Projects</span>
+        </a>
         <span>nav 3</span>
         {% if not user.is_authenticated %}
-            <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
+            <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="pragmatic--header_nav">
                 <span>login</span>
             </a>
-            <a href="{% url 'accountapp:create' %}">
+            <a href="{% url 'accountapp:create' %}" class="pragmatic--header_nav">
                 <span>SignUp</span>
             </a>
         {% else %}
-            <a href="{% url 'accountapp:detail' user.pk %}">
+            <a href="{% url 'accountapp:detail' user.pk %}" class="pragmatic--header_nav">
                 <span>MyPage</span>
             </a>
-            <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
+            <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" class="pragmatic--header_nav">
                 <span>logout</span>
             </a>
         {% endif %}

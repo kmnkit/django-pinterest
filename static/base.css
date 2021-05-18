@@ -18,3 +18,27 @@
   text-align: center;
   margin-top: 2rem;
 }
+
+@media screen and (max-width:500px){
+  html {
+    font-size: 13px;
+  }
+}
+
+a{
+  color: black;
+}
+
+a:hover{
+  color:black;
+  text-decoration: none;
+}
+
+.pragmatic--header_nav {
+  margin: 1rem 0.5rem;
+  text-decoration: none;
+}
+
+.pragmatic--header_navbar{
+  margin: 1rem 0;
+}

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from projectapp.models import Project
 
 User = get_user_model()
 
@@ -7,6 +8,12 @@ User = get_user_model()
 class Article(models.Model):
     writer = models.ForeignKey(
         User, on_delete=models.SET_NULL, related_name="articles", null=True
+    )
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="articles",
     )
     title = models.CharField(max_length=200, null=True)
     image = models.ImageField(upload_to="articles/", null=False)
