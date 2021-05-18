@@ -1,8 +1,10 @@
+from commentapp.forms import CommentCreationForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormMixin
 from .decorators import article_ownership_required
 from .forms import ArticleCreationForm
 from .models import Article
@@ -26,8 +28,9 @@ class ArticleCreationView(CreateView):
         return reverse_lazy("articleapp:detail", kwargs={"pk": self.object.pk})
 
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(DetailView, FormMixin):
     model = Article
+    form_class = CommentCreationForm
     context_object_name = "target_article"
     template_name = "articleapp/detail.html"
 
