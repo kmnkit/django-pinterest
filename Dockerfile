@@ -4,7 +4,7 @@ WORKDIR /home/
 
 RUN git clone https://github.com/kmnkit/django-pinterest.git
 
-WORKDIR /home/pragmatic/
+WORKDIR /home/django-pinterest/
 
 RUN pip install -r requirements.txt
 
