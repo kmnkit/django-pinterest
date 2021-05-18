@@ -5,13 +5,11 @@ from .views import (
     AccountDetailView,
     AccountUpdateView,
     AccountDeleteView,
-    hello_world,
 )
 
 app_name = "accountapp"
 
 urlpatterns = [
-    path("hello_world/", hello_world, name="hello_world"),
     path(
         "login/", LoginView.as_view(template_name="accountapp/login.html"), name="login"
     ),

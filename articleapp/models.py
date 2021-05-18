@@ -20,3 +20,8 @@ class Article(models.Model):
     content = models.TextField(null=True)
 
     created_at = models.DateField(auto_now_add=True, auto_created=True)
+
+    class Meta:
+        ordering = [
+            "pk",
+        ]
