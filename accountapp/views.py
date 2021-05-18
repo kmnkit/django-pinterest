@@ -1,17 +1,25 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .forms import AccountUpdateForm
+from .decorators import account_ownership_required
 
 User = get_user_model()
+has_ownership = [account_ownership_required, login_required]
 
 
+@login_required
 def hello_world(request):
+
     if request.method == "POST":
         return render(
-            request, "accountapp/hello_world.html", context={"text": "POST METHOD!!"}
+            request,
+            "accountapp/hello_world.html",
+            context={"text": "POST METHOD!!"},
         )
     else:
         return render(
@@ -32,6 +40,8 @@ class AccountDetailView(DetailView):
     template_name = "accountapp/detail.html"
 
 
+@method_decorator(has_ownership, "get")
+@method_decorator(has_ownership, "post")
 class AccountUpdateView(UpdateView):
     model = User
     context_object_name = "target_user"
@@ -40,6 +50,8 @@ class AccountUpdateView(UpdateView):
     template_name = "accountapp/update.html"
 
 
+@method_decorator(has_ownership, "get")
+@method_decorator(has_ownership, "post")
 class AccountDeleteView(DeleteView):
     model = User
     template_name = "accountapp/delete.html"
