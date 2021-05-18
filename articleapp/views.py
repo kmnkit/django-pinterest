@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.views.generic.detail import DetailView
 from .decorators import article_ownership_required
 from .forms import ArticleCreationForm
@@ -51,3 +51,10 @@ class ArticleDeleteView(DeleteView):
     context_object_name = "target_article"
     template_name = "articleapp/delete.html"
     success_url = reverse_lazy("articleapp:list")
+
+
+class ArticleListView(ListView):
+    model = Article
+    context_object_name = "article_list"
+    template_name = "articleapp/list.html"
+    paginate_by = 5
