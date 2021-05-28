@@ -162,5 +162,6 @@ Thumbs.db
 
 .prettierignore
 Dockerfile
+docker-compose.yml
 nginx.conf
 # End of https://www.toptal.com/developers/gitignore/api/django
